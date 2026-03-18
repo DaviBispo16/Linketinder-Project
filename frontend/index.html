@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linketinder - Conectando Talentos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="container">
+            <h1 class="logo">Linketinder</h1>
+            <nav class="app-nav">
+                <button id="nav-candidate" class="nav-btn active">Sou Candidato</button>
+                <button id="nav-company" class="nav-btn">Sou Empresa</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <section id="candidate-section" class="form-container">
+            <h2 class="section-title">Cadastro de Candidato</h2>
+            <form id="candidate-form" class="registration-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="c-name">Nome Completo</label>
+                        <input type="text" id="c-name" name="name" required placeholder="Ex: João Silva">
+                    </div>
+                    <div class="form-group">
+                        <label for="c-email">E-mail</label>
+                        <input type="email" id="c-email" name="email" required placeholder="joao.silva@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="c-cpf">CPF</label>
+                        <input type="text" id="c-cpf" name="cpf" required placeholder="000.000.000-00">
+                    </div>
+                    <div class="form-group">
+                        <label for="c-age">Idade</label>
+                        <input type="number" id="c-age" name="age" required min="14" max="120">
+                    </div>
+                    <div class="form-group">
+                        <label for="c-state">Estado</label>
+                        <input type="text" id="c-state" name="state" required placeholder="Ex: São Paulo">
+                    </div>
+                    <div class="form-group">
+                        <label for="c-cep">CEP</label>
+                        <input type="text" id="c-cep" name="cep" required placeholder="00000-000">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="c-description">Descrição Pessoal</label>
+                        <textarea id="c-description" name="description" rows="3" required
+                            placeholder="Conte um pouco sobre você..."></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="c-education">Formação Acadêmica</label>
+                        <input type="text" id="c-education" name="education" required
+                            placeholder="Ex: Ciência da Computação - USP">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="c-skills">Competências (separadas por vírgula)</label>
+                        <input type="text" id="c-skills" name="skills" required
+                            placeholder="Ex: TypeScript, CSS, Node.js">
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">Cadastrar</button>
+            </form>
+
+            <div id="job-list-container" class="list-container">
+                <h3 class="list-title">Vagas Disponíveis</h3>
+                <div id="job-list" class="grid-list"></div>
+            </div>
+        </section>
+
+        <section id="company-section" class="form-container hidden">
+            <h2 class="section-title">Cadastro de Empresa</h2>
+            <form id="company-form" class="registration-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="e-name">Nome da Empresa</label>
+                        <input type="text" id="e-name" name="name" required placeholder="Ex: Tech Solutions">
+                    </div>
+                    <div class="form-group">
+                        <label for="e-email">E-mail Corporativo</label>
+                        <input type="email" id="e-email" name="email" required placeholder="contato@empresa.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="e-cnpj">CNPJ</label>
+                        <input type="text" id="e-cnpj" name="cnpj" required placeholder="00.000.000/0000-00">
+                    </div>
+                    <div class="form-group">
+                        <label for="e-country">País</label>
+                        <input type="text" id="e-country" name="country" required placeholder="Ex: Brasil">
+                    </div>
+                    <div class="form-group">
+                        <label for="e-state">Estado</label>
+                        <input type="text" id="e-state" name="state" required placeholder="Ex: Rio de Janeiro">
+                    </div>
+                    <div class="form-group">
+                        <label for="e-cep">CEP</label>
+                        <input type="text" id="e-cep" name="cep" required placeholder="00000-000">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="e-description">Descrição da Empresa</label>
+                        <textarea id="e-description" name="description" rows="3" required
+                            placeholder="O que sua empresa faz?"></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">Cadastrar Empresa</button>
+            </form>
+
+            <div id="candidate-list-container" class="list-container">
+                <h3 class="list-title">Banco de Talentos (Resumo)</h3>
+                <div id="candidate-list" class="grid-list"></div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="dist/main.js"></script>
+</body>
+
+</html>
