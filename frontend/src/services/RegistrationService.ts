@@ -18,7 +18,8 @@ export class RegistrationService {
 
     private renderLists() {
         this.renderJobs();
-        this.renderAnonymousCandidates();
+        this.renderCandidates();
+        this.renderSkills();
     }
 
     private renderJobs() {
@@ -28,7 +29,7 @@ export class RegistrationService {
         jobList.innerHTML = mockJobs.map(job => `
             <div class="card">
                 <h4>${job.title}</h4>
-                <p><strong>${job.companyName}</strong></p>
+                <h4>Empresa (Anônimo)</h4>
                 <p>${job.description}</p>
                 <div class="skills-tags">
                     ${job.skillsRequired.map(s => `<span class="tag">${s}</span>`).join('')}
@@ -37,7 +38,7 @@ export class RegistrationService {
         `).join('');
     }
 
-    private renderAnonymousCandidates() {
+    private renderCandidates() {
         const candidateList = document.getElementById('candidate-list');
         if (!candidateList) return;
 
@@ -50,6 +51,38 @@ export class RegistrationService {
                 </div>
             </div>
         `).join('');
+    }
+
+    private renderSkills() {
+        const chartWrapper = document.getElementById('skills-chart');
+        if (!chartWrapper) return;
+
+        const skillCounts: { [key: string]: number } = {};
+        mockCandidates.forEach(candidate => {
+            candidate.skills.forEach(skill => {
+                const normalizedSkill = skill.trim();
+                skillCounts[normalizedSkill] = (skillCounts[normalizedSkill] || 0) + 1;
+            });
+        });
+
+        const sortedSkills = Object.entries(skillCounts)
+            .sort((a, b) => b[1] - a[1]);
+
+        const maxCount = Math.max(...Object.values(skillCounts), 1);
+
+        chartWrapper.innerHTML = sortedSkills.map(([skill, count]) => {
+            const percentage = (count / maxCount) * 100;
+            return `
+                <div class="chart-item">
+                    <span class="chart-label" title="${skill}">${skill}</span>
+                    <div class="chart-bar-container">
+                        <div class="chart-bar" style="width: ${percentage}%">
+                            <span class="chart-count">${count}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
     }
 
     private handleCandidateSubmit(e: Event) {
@@ -69,8 +102,13 @@ export class RegistrationService {
             skills: (formData.get('skills') as string).split(',').map(s => s.trim())
         };
 
+        mockCandidates.push(candidate);
+
         console.log('Candidato Cadastrado:', JSON.stringify(candidate, null, 2));
         alert('Candidato cadastrado com sucesso!');
+
+        this.renderLists();
+        form.reset();
     }
 
     private handleCompanySubmit(e: Event) {
@@ -88,7 +126,11 @@ export class RegistrationService {
             description: formData.get('description') as string
         };
 
+
         console.log('Empresa Cadastrada:', JSON.stringify(company, null, 2));
         alert('Empresa cadastrada com sucesso!');
+
+        this.renderLists();
+        form.reset();
     }
 }
