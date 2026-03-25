@@ -1,5 +1,5 @@
-import { Candidate } from '../models/Candidate.js';
-import { Company } from '../models/Company.js';
+import { Candidate, CandidateRegex } from '../models/Candidate.js';
+import { Company, CompanyRegex } from '../models/Company.js';
 import { mockCandidates, mockJobs } from './MockData.js';
 
 export class RegistrationService {
@@ -90,13 +90,40 @@ export class RegistrationService {
         const form = e.target as HTMLFormElement;
         const formData = new FormData(form);
 
+        const name = formData.get('name') as string;
+        const email = formData.get('email') as string;
+        const cpf = formData.get('cpf') as string;
+        const state = formData.get('state') as string;
+        const cep = formData.get('cep') as string;
+
+        if (!CandidateRegex.name.test(name)) {
+            alert('Nome inválido! Digite apenas letras (mínimo de 2 caracteres).');
+            return;
+        }
+        if (!CandidateRegex.email.test(email)) {
+            alert('E-mail inválido! Verifique o formato digitado.');
+            return;
+        }
+        if (!CandidateRegex.cpf.test(cpf)) {
+            alert('CPF inválido! Digite no formato correto.');
+            return;
+        }
+        if (!CandidateRegex.state.test(state)) {
+            alert('Estado inválido! Digite a sigla do estado com 2 letras (ex: SP).');
+            return;
+        }
+        if (!CandidateRegex.cep.test(cep)) {
+            alert('CEP inválido! Digite no formato 00000-000 ou 00000000.');
+            return;
+        }
+
         const candidate: Candidate = {
-            name: formData.get('name') as string,
-            email: formData.get('email') as string,
-            cpf: formData.get('cpf') as string,
+            name: name,
+            email: email,
+            cpf: cpf,
             age: Number(formData.get('age')),
-            state: formData.get('state') as string,
-            cep: formData.get('cep') as string,
+            state: state,
+            cep: cep,
             description: formData.get('description') as string,
             education: formData.get('education') as string,
             skills: (formData.get('skills') as string).split(',').map(s => s.trim())
@@ -116,10 +143,47 @@ export class RegistrationService {
         const form = e.target as HTMLFormElement;
         const formData = new FormData(form);
 
+        const name = formData.get('name') as string;
+        const email = formData.get('email') as string;
+        const cnpj = formData.get('cnpj') as string;
+        const country = formData.get('country') as string;
+        const state = formData.get('state') as string;
+        const cep = formData.get('cep') as string;
+        const description = formData.get('description') as string;
+
+        if (!CompanyRegex.name.test(name)) {
+            alert('Nome inválido! Digite apenas letras (mínimo de 2 caracteres).');
+            return;
+        }
+        if (!CompanyRegex.email.test(email)) {
+            alert('E-mail inválido! Verifique o formato digitado.');
+            return;
+        }
+        if (!CompanyRegex.cnpj.test(cnpj)) {
+            alert('CNPJ inválido! Digite no formato correto.');
+            return;
+        }
+        if (!CompanyRegex.country.test(country)) {
+            alert('País inválido! Digite o nome do país com 2 ou mais caracteres.');
+            return;
+        }
+        if (!CompanyRegex.state.test(state)) {
+            alert('Estado inválido! Digite a sigla do estado com 2 letras (ex: SP).');
+            return;
+        }
+        if (!CompanyRegex.cep.test(cep)) {
+            alert('CEP inválido! Digite no formato 00000-000 ou 00000000.');
+            return;
+        }
+        if (!CompanyRegex.description.test(description)) {
+            alert('Descrição inválida! Digite no mínimo 10 caracteres.');
+            return;
+        }
+
         const company: Company = {
-            name: formData.get('name') as string,
-            email: formData.get('email') as string,
-            cnpj: formData.get('cnpj') as string,
+            name: name,
+            email: email,
+            cnpj: cnpj,
             country: formData.get('country') as string,
             state: formData.get('state') as string,
             cep: formData.get('cep') as string,
