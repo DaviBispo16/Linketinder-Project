@@ -32,3 +32,8 @@ groovy -version
 ```bash
 groovy Main.groovy
 ```
+
+## Modelagem do banco (MER/DER)
+<img width="1311" height="752" alt="Screenshot From 2026-04-01 21-45-36" src="https://github.com/user-attachments/assets/f2fea4e0-d6c9-4971-9e38-8416db372d9a" />
+Programa utilizado dbDiagram
+
