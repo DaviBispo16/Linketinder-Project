@@ -62,6 +62,19 @@ create table job_skill(
     job_id varchar(255) references job(id) on delete cascade
 )
 
+create table candidate_like(
+  candidate_id varchar(255) references candidate(id),
+  job_id varchar(255) references job(id),
+  created_at timestamp with time zone default CURRENT_TIMESTAMP,
+  updated_at timestamp with time zone default CURRENT_TIMESTAMP
+)
+
+create table company_like(
+  company_id varchar(255) references company(id),
+  candidate_id varchar(255) references candidate(id),
+  created_at timestamp with time zone default CURRENT_TIMESTAMP,
+  updated_at timestamp with time zone default CURRENT_TIMESTAMP
+)
 
 INSERT INTO location (id, postal_code, city, nation, country)
 VALUES 
