@@ -1,12 +1,21 @@
 package com.davi.model
 
-class Company extends Person{
+class Company {
+    String id
+    String name
     String cnpj
-    String country
+    String email
+    String description
+    String password
+    String location_id
 
-    Company(String name, String email, String state, String zipCode, String description, String cnpj, String country) {
-        super(name, email, state, zipCode, description)
+    Company(String name, String cnpj, String email, String description, String password, String location_id) {
+        this.id = java.util.UUID.randomUUID().toString()
+        this.name = name
         this.cnpj = cnpj
-        this.country = country
+        this.email = email
+        this.description = description
+        this.password = password
+        this.location_id = location_id
     }
 }

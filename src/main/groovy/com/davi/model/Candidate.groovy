@@ -1,12 +1,23 @@
 package com.davi.model
 
-class Candidate extends Person{
+class Candidate {
+    String id
+    String first_name
+    String last_name
+    String email
     String cpf
-    int age
+    String description
+    String password
+    String location_id
 
-    Candidate(String name, String email, String state, String zipCode, String description, String cpf, int age) {
-        super(name, email, state, zipCode, description)
+    Candidate(String first_name, String last_name, String email, String cpf, String description, String password, String location_id) {
+        this.id = java.util.UUID.randomUUID().toString()
+        this.first_name = first_name
+        this.last_name = last_name
+        this.email = email
         this.cpf = cpf
-        this.age = age
+        this.description = description
+        this.password = password
+        this.location_id = location_id
     }
 }
