@@ -31,3 +31,6 @@ bin/
 
 /lib
 /.idea
+
+.gradle/
+build/

@@ -1,0 +1,37 @@
+plugins {
+    id 'groovy'
+    id 'application'
+}
+
+group = 'com.davi'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.apache.groovy:groovy-all:5.0.0-alpha-1'
+    implementation 'org.apache.groovy:groovy-sql:5.0.0-alpha-1'
+    
+    implementation 'org.postgresql:postgresql:42.7.2'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
+    testImplementation 'org.mockito:mockito-core:5.11.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.11.0'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+application {
+    mainClass = 'Main' 
+}
