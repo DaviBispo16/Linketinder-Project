@@ -36,14 +36,14 @@ create table company(
 )
 
 create table job(
-  id varchar(255) primary key,
-  name varchar(255) primary key,
-  description text,
-  job_location varchar(100) not null,
-  created_at timestamp with time zone default CURRENT_TIMESTAMP,
-  updated_at timestamp with time zone default CURRENT_TIMESTAMP,
-  company_id references company(id)
-) 
+    id varchar(255) primary key,
+    name varchar(255) not null,
+    description text,
+    job_location varchar(100) not null,
+    created_at timestamp with time zone default CURRENT_TIMESTAMP,
+    updated_at timestamp with time zone default CURRENT_TIMESTAMP,
+    company_id varchar(255) references company(id)
+)
 
 create table skill(
   id varchar(255) primary key,
@@ -85,13 +85,14 @@ VALUES
 ('loc-fln', '74323-123', 'Florianópolis', 'SC', 'Brazil');
 
 
-insert into candidate (id, first_name, last_name, email, cpf, description, password, location_id)
-VALUES 
-('cand-001', 'Alice', 'Silva', 'alice.silva@email.com', '123.456.789-10', 'Senior Fullstack Developer with 10 years of experience.', 'hashed_pass_1', 'loc-sp-01'),
-('cand-002', 'Bruno', 'Santos', 'bruno.santos@email.com', '234.567.890-11', 'Junior Data Scientist passionate about Machine Learning.', 'hashed_pass_2', 'loc-rj-02'),
-('cand-003', 'Carla', 'Oliveira', 'carla.olive@email.com', '345.678.901-12', 'UX/UI Designer focused on accessibility and mobile-first design.', 'hashed_pass_3', 'loc-mg-03'),
-('cand-004', 'Diego', 'Souza', 'diego.souza@email.com', '456.789.012-13', 'Project Manager with PMP certification and agile expertise.', 'hashed_pass_4', 'loc-sc-04'),
-('cand-005', 'Elena', 'Pereira', 'elena.p@email.com', '567.890.123-14', 'DevOps Engineer specialized in AWS and Kubernetes.', 'hashed_pass_5', 'loc-pr-05');
+INSERT INTO candidate (id, first_name, last_name, email, cpf, description, password, location_id)
+VALUES
+    ('cand-001', 'Alice', 'Silva', 'alice.silva@email.com', '123.456.789-10', 'Senior Fullstack Developer with 10 years of experience.', 'hashed_pass_1', 'loc-ba'),
+    ('cand-002', 'Bruno', 'Santos', 'bruno.santos@email.com', '234.567.890-11', 'Junior Data Scientist passionate about Machine Learning.', 'hashed_pass_2', 'loc-ba'),
+    ('cand-003', 'Carla', 'Oliveira', 'carla.olive@email.com', '345.678.901-12', 'UX/UI Designer focused on accessibility and mobile-first design.', 'hashed_pass_3', 'loc-go'),
+    ('cand-004', 'Diego', 'Souza', 'diego.souza@email.com', '456.789.012-13', 'Project Manager with PMP certification and agile expertise.', 'hashed_pass_4', 'loc-go'),
+    ('cand-005', 'Elena', 'Pereira', 'elena.p@email.com', '567.890.123-14', 'DevOps Engineer specialized in AWS and Kubernetes.', 'hashed_pass_5', 'loc-go');
+
 
 
 INSERT INTO company (id, name, cnpj, email, description, password, location_id)
