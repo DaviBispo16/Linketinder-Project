@@ -2,7 +2,7 @@ package com.davi.repository
 
 import groovy.sql.Sql
 
-class CandidateRepository {
+class CandidateRepository implements ICandidateRepository {
     private final Sql sql
 
     CandidateRepository(Sql sql) {
