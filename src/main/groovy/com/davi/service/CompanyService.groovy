@@ -1,17 +1,21 @@
 package com.davi.service
 
 import com.davi.model.Company
+import com.davi.repository.ICompanyRepository
 
 class CompanyService {
-    private final List<Company> companies = []
+    private final ICompanyRepository repository
+
+    CompanyService(ICompanyRepository repository) {
+        this.repository = repository
+    }
 
     Company create(Company company) {
-        companies << company
-        return company;
+        repository.insertCompany(company.id, company.name, company.cnpj, company.email, company.description, company.password, company.location_id)
+        return company
     }
 
-    List<Company> listAll() {
-        return companies
+    List<Map> listAll() {
+        return repository.listCompany()
     }
-
 }
