@@ -32,6 +32,10 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
+tasks.named('run', JavaExec) {
+    standardInput = System.in
+}
+
 application {
-    mainClass = 'Main' 
+    mainClass = 'com.davi.Main'
 }
