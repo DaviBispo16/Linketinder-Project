@@ -9,22 +9,6 @@ class CompanyRepository implements ICompanyRepository {
         this.sql = sql
     }
 
-    void createTable() {
-        sql.execute("""
-            CREATE TABLE IF NOT EXISTS company (
-            id varchar(255) primary key,
-            name varchar(100) not null,
-            cnpj varchar(18) not null unique,
-            email varchar(255) unique not null,
-            description text,
-            password varchar(255) not null,
-            created_at timestamp with time zone default CURRENT_TIMESTAMP,
-            updated_at timestamp with time zone default CURRENT_TIMESTAMP,
-            location_id varchar(255) references location(id)
-            )
-        """)
-    }
-
     void insertCompany(String id, String name, String cnpj, String email, String description, String password, String location_id) {
         sql.executeInsert(
                 'INSERT INTO company (id, name, cnpj, email, description, password, location_id) VALUES (?, ?, ?, ?, ?, ?, ?)',
