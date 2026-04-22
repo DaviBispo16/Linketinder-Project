@@ -12,4 +12,19 @@ class MemoryCandidateRepository implements ICandidateRepository {
     List<Map> listCandidate() {
         return candidates
     }
+
+    @Override
+    Map findCandidateById(Long id) {
+        return null
+    }
+
+    @Override
+    void updateCandidate(String id, String first_name, String last_name, String email, String cpf, String description, String password) {
+
+    }
+
+    @Override
+    int deleteCandidateById(Long id) {
+        return 0
+    }
 }

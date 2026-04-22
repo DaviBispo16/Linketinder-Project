@@ -12,4 +12,19 @@ class MemoryCompanyRepository implements ICompanyRepository {
     List<Map> listCompany() {
         return companies
     }
+
+    @Override
+    Map findCompanyById(String id) {
+        return null
+    }
+
+    @Override
+    void updateCompany(String name, String cnpj, String email, String description, String password) {
+
+    }
+
+    @Override
+    int deleteCompanyById(String id) {
+        return 0
+    }
 }
