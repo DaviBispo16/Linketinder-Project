@@ -20,31 +20,8 @@ static void main(String[] args) {
     def companyRepo = new CompanyRepository(globalSql)
     def candidateRepo = new CandidateRepository(globalSql)
 
-    companyRepo.createTable()
-    candidateRepo.createTable()
-
     CompanyService companyService = new CompanyService(companyRepo)
     CandidateService candidateService = new CandidateService(candidateRepo)
-
-//    try {
-//        candidateService.create(new Candidate('Lucas', 'Mateus', 'lucas.mateus@example.com1', '123.456.789-01', 'QA / test automation', '123456', 'loc-go'))
-//        candidateService.create(new Candidate('Mariana', 'Silva', 'mariana.silva@example.com1', '987.654.321-01', 'Backend developer (APIs)', '123456', 'loc-go'))
-//        candidateService.create(new Candidate('Rafael', 'Souza', 'rafael.souza@example.com1', '741.852.963-11', 'Software engineer (architecture)', '123456', 'loc-go'))
-//        candidateService.create(new Candidate('Camila', 'Oliveira', 'camila.oliveira@example.com1', '159.357.258-21', 'Product designer (UX/UI)', '123456', 'loc-go'))
-//        candidateService.create(new Candidate('Bruno', 'Almeida', 'bruno.almeida@example.com1', '456.789.123-31', 'DevOps (pipelines/containers)', '123456', 'loc-go'))
-//    } catch (Exception e) {
-//        println "Alguns candidatos já existem: ${e.message}"
-//    }
-
-//    try {
-//        companyService.create(new Company('FlowTech Solutions', '12345678000190', 'contato@flowtech.example', 'Software house focada em integração e automação.', '123456', 'loc-go'))
-//        companyService.create(new Company('Bahia Payments', '98765432000110', 'suporte@bahiapay.example', 'Serviços de pagamento e adquirência para varejo.', '123456', 'loc-go'))
-//        companyService.create(new Company('Rio Data Lab', '45678912000133', 'hello@riodatalab.example', 'Consultoria em dados, BI e observabilidade.', '123456', 'loc-go'))
-//        companyService.create(new Company('Minas Cloud Ops', '56789123000144', 'ops@minascloud.example', 'DevOps e cloud para empresas de médio porte.', '123456', 'loc-go'))
-//        companyService.create(new Company('Sul Commerce Group', '67891234000155', 'vendas@sulcommerce.example', 'Plataforma de e-commerce e logística integrada.', '123456', 'loc-go'))
-//    } catch (Exception e) {
-//        println "Algumas empresas já existem: ${e.message}"
-//    }
 
     Scanner scanner = new Scanner(System.in)
     boolean running = true
