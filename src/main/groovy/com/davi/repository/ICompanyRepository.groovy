@@ -1,10 +1,12 @@
 package com.davi.repository
 
+import com.davi.model.Company
+
 interface ICompanyRepository {
-    void insertCompany(String id, String name, String cnpj, String email, String description, String password,
+    Company insertCompany(String id, String name, String cnpj, String email, String description, String password,
                        String location_id)
-    List<Map> listCompany()
-    Map findCompanyById(String id)
-    void updateCompany(String name, String cnpj, String email, String description, String password)
-    int deleteCompanyById(String id)
+    List<Company> listCompany()
+    Company findCompanyById(String id)
+    Company updateCompany(String name, String cnpj, String email, String description, String password)
+    boolean deleteCompanyById(String id)
 }
