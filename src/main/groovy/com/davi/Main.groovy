@@ -1,6 +1,7 @@
 package com.davi
 
-import com.davi.database.DbConfig
+import com.davi.database.ConnectionFactory
+import com.davi.database.DatabaseConnectionFactory
 import com.davi.model.Candidate
 import com.davi.model.Company
 import com.davi.repository.CandidateRepository
@@ -10,12 +11,8 @@ import com.davi.service.CompanyService
 import groovy.sql.Sql
 
 static void main(String[] args) {
-    Sql globalSql = Sql.newInstance(
-            DbConfig.URL,
-            DbConfig.USER,
-            DbConfig.PASSWORD,
-            DbConfig.DRIVER
-    )
+    ConnectionFactory factory = DatabaseConnectionFactory.getFactory("postgres")
+    Sql globalSql = factory.createConnection()
 
     def companyRepo = new CompanyRepository(globalSql)
     def candidateRepo = new CandidateRepository(globalSql)
