@@ -9,6 +9,7 @@ class Candidate {
     String description
     String password
     String location_id
+    Candidate() {}
 
     Candidate(String first_name, String last_name, String email, String cpf, String description, String password, String location_id) {
         this.id = java.util.UUID.randomUUID().toString()

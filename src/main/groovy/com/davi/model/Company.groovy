@@ -8,6 +8,7 @@ class Company {
     String description
     String password
     String location_id
+    Company() {}
 
     Company(String name, String cnpj, String email, String description, String password, String location_id) {
         this.id = java.util.UUID.randomUUID().toString()
