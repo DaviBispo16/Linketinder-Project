@@ -11,11 +11,10 @@ class CandidateService {
     }
 
     Candidate create(Candidate newCandidate) {
-        repository.insertCandidate(newCandidate.id, newCandidate.first_name, newCandidate.last_name, newCandidate.email, newCandidate.cpf, newCandidate.description, newCandidate.password, newCandidate.location_id)
-        return newCandidate
+        return repository.insertCandidate(newCandidate.id, newCandidate.first_name, newCandidate.last_name, newCandidate.email, newCandidate.cpf, newCandidate.description, newCandidate.password, newCandidate.location_id)
     }
 
-    List<Map> listAll() {
+    List<Candidate> listAll() {
         return repository.listCandidate()
     }
 }
