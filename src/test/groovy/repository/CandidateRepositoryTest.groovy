@@ -44,14 +44,14 @@ class CandidateRepositoryTest {
     @DisplayName("Should list candidates successfully using Mockito")
     void testListCandidatesWithMockedDb() {
         List<Map> mockResult = [
-            [first_name: "Davi", last_name: "Silva", email: "davi@example.com", cpf: "12312312312", description: "Developer"]
+            [id: "1", first_name: "Davi", last_name: "Silva", email: "davi@example.com", cpf: "12312312312", description: "Developer", password: "pwd", location_id: "loc1"]
         ]
-        when(mockSql.rows('SELECT first_name, last_name, email, cpf, description FROM candidate ORDER BY id')).thenReturn(mockResult)
+        when(mockSql.rows('SELECT id, first_name, last_name, email, cpf, description, password, location_id FROM candidate ORDER BY id')).thenReturn(mockResult)
 
-        List<Map> result = repository.listCandidate()
+        List<com.davi.model.Candidate> result = repository.listCandidate()
 
         assertEquals(1, result.size())
         assertEquals("Davi", result[0].first_name)
-        verify(mockSql, times(1)).rows('SELECT first_name, last_name, email, cpf, description FROM candidate ORDER BY id')
+        verify(mockSql, times(1)).rows('SELECT id, first_name, last_name, email, cpf, description, password, location_id FROM candidate ORDER BY id')
     }
 }

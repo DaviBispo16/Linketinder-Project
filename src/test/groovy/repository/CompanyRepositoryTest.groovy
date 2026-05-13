@@ -23,7 +23,6 @@ class CompanyRepositoryTest {
     @Test
     @DisplayName("Should successfully insert a company using Mockito")
     void testInsertCompanyWithMockedDb() {
-        // Arrange
         String id = "123e4567"
         String name = "ZG Acelera"
         String cnpj = "12.345.678/0001-90"
@@ -44,14 +43,14 @@ class CompanyRepositoryTest {
     @DisplayName("Should list companies successfully using Mockito")
     void testListCompaniesWithMockedDb() {
         List<Map> mockResult = [
-            [name: "ZG Acelera", cnpj: "12.345.678/0001-90", email: "contato@acelera.com.br", description: "Software house", password: "password"]
+            [id: "1", name: "ZG Acelera", cnpj: "12.345.678/0001-90", email: "contato@acelera.com.br", description: "Software house", password: "password", location_id: "loc1"]
         ]
-        when(mockSql.rows('SELECT name, cnpj, email, description, password FROM company ORDER BY id')).thenReturn(mockResult)
+        when(mockSql.rows('SELECT id, name, cnpj, email, description, password, location_id FROM company ORDER BY id')).thenReturn(mockResult)
 
-        List<Map> result = repository.listCompany()
+        List<com.davi.model.Company> result = repository.listCompany()
 
         assertEquals(1, result.size())
         assertEquals("ZG Acelera", result[0].name)
-        verify(mockSql, times(1)).rows('SELECT name, cnpj, email, description, password FROM company ORDER BY id')
+        verify(mockSql, times(1)).rows('SELECT id, name, cnpj, email, description, password, location_id FROM company ORDER BY id')
     }
 }
